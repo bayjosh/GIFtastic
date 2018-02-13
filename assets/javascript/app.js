@@ -1,63 +1,71 @@
-var topic = ["Basketball", "Football", "Hockey"];
+//Create initial array of sports
+var topic = ["Basketball", "Football", "Curling", "Volleyball", "Dodgeball", "Kickball", "Baseball", "Soccer"];
+
 
 $(document).ready(function () {
 
-    renderButtons();
 
-    function renderButtons() {
+//Event listener that pushes user input into array and creates an associated button
 
-        // Deleting the movies prior to adding new movies
-        // (this is necessary otherwise you will have repeat buttons)
-        $("#buttons-view").empty();
-
-        // Looping through the array of sports
-        for (var i = 0; i < topic.length; i++) {
-
-            // Then dynamicaly generating buttons for each movie in the array
-            // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-            var btn = $("<button>");
-            // Adding a class of movie-btn to our button
-            btn.addClass("sport-btn");
-            // Adding a data-attribute
-            btn.attr("data-sport", topic[i]);
-            // Providing the initial button text
-            btn.text(topic[i]);
-            // Adding the button to the buttons-view div
-            $("#buttons-view").append(btn);
-        }
-    }
-
-    // This function handles events where a movie button is clicked
     $("body").on("click", "#add-sport", function (event) {
         event.preventDefault();
-        // This line grabs the input from the textbox
+
         var sportInput = $("#sport-input").val().trim();
 
-        // Adding movie from the textbox to our array
         topic.push(sportInput);
 
-        // Calling renderButtons which handles the processing of our movie array
+        $("#sport-input").val("");
+
         renderButtons();
 
     });
 
+//Puts buttons on the page from the array of sports
+    function renderButtons() {
+
+        $("#buttons-view").empty();
+
+        for (var i = 0; i < topic.length; i++) {
+
+            var btn = $("<button>");
+          
+            btn.addClass("sport-btn btn btn-success");
+            
+            btn.attr("data-sport", topic[i]);
+            
+            btn.text(topic[i]);
+            
+            $("#buttons-view").append(btn);
+        };
+    };
+    
+    //Calls the function
+    renderButtons();
+
+
+
+    //Event listener to trigger the AJAX request
     $("body").on("click", ".sport-btn", function () {
         var sport = $(this).attr("data-sport");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             sport + "&api_key=8givL4D9FFRQo2Lb7vNLH6o6z9DdOmOm&limit=10";
 
+
+        //AJAX request    
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function (response) {
+        })
+            .then(function (response) {
 
             var results = response.data;
 
             $("#gifs-appear-here").empty();
 
+            //For loop to put gifs on the page
             for (var i = 0; i < results.length; i++) {
 
-                var sportDiv = $("<div>");
+                var sportDiv = $("<div class='item'>");
 
                 var rating = results[i].rating;
 
@@ -79,9 +87,8 @@ $(document).ready(function () {
                 $("#gifs-appear-here").prepend(sportDiv);
             }
 
-            
-
-            $("body").on("click", ".gif", function () {
+            //Event listener to trigger play/pause functionality
+            $(".gif").on("click", function () {
 
                 var state = $(this).attr("data-state");
         

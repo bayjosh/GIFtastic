@@ -4,21 +4,34 @@
 <head>
   <meta charset="utf-8">
   <title>Sports</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet">
+
+
 </head>
 
 <body>
   <div class="container">
 
-      <h1>Sports Gifs</h1>
+      <h1 id="title">Sports Gifs</h1>
+        
+      <br>
 
       <div id="buttons-view"></div>
   
+      <br>    
+
         <form id="sport-form">
             <label for="sport-input">Add a Sport!</label>
             <input type="text" id="sport-input">
-            <br>
             <input id="add-sport" type="submit" value="Add a Sport">
         </form>
+
+    <br>
 
         <div id="gifs-appear-here"></div>
 

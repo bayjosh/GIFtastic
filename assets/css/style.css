@@ -1,0 +1,25 @@
+.btn {
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.title{
+    margin-bottom: 20px;
+}
+
+.gif {
+    margin-bottom: 20px;
+}
+
+body {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    background: url(http://www.hbartificialpitchmaintenance.co.uk/images/sport-ball-background.jpg) center fixed;
+    background-size: cover;
+
+}
+    
+
+.item {
+    float: left;
+    margin-right: 20px;
+}
